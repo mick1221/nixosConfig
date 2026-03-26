@@ -7,7 +7,7 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+      /etc/nixos/hardware-configuration.nix
       <home-manager/nixos>
     ];
 
@@ -221,11 +221,14 @@
   programs.zsh ={
     enable = true;
     enableCompletion = true;
+    shellAliases = {
+      nixosupdate = "sudo nixos-rebuild switch";
+    };
     history = {
-      size = 10000;         # Number of history lines to keep in memory (HISTSIZE)
-      save = 10000;         # Number of history lines to save to the history file (SAVEHIST)
-      path = "$HOME/.zsh_history"; # Optional: specific path for the history file
-      share = true;         # Share history between different zsh sessions
+      size = 10000;
+      save = 10000;
+      path = "$HOME/.zsh_history";
+      share = true;
       ignoreDups = true;
     };
 
