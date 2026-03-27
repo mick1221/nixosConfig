@@ -99,9 +99,6 @@
     enable = true;
   };
   programs.zsh.enable = true;
-  programs.neovim = {
-    enable = true;
-};
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.nmickus = {
@@ -117,95 +114,7 @@
 
   home-manager.users.nmickus = {pkgs, ...}: {
 
-
-
-    programs.neovim ={
-      enable = true;
-      defaultEditor = true;
-      vimAlias = true;
-
-      extraPackages = with pkgs;[
-        lua-language-server
-        nil  # Nix LSP
-        nodePackages.typescript-language-server
-      ];
-
-      plugins = with pkgs.vimPlugins; [
-        # Colorscheme
-        {
-          plugin = catppuccin-nvim;
-          type = "lua";
-          config = ''
-          require("catppuccin").setup({
-          flavor = "mocha", -- latte, frappe, macchiato, mocha
-          })
-          vim.cmd.colorscheme("catppuccin")
-          '';
-        }
-
-        # File tree
-        {
-          plugin = nvim-tree-lua;
-          config = ''
-            lua require("nvim-tree").setup()
-          '';
-        }
-
-        # Fuzzy finder
-        telescope-nvim
-        plenary-nvim  # telescope dependency
-
-        # Treesitter (syntax highlighting)
-        {
-          plugin = nvim-treesitter.withAllGrammars;
-          type = "lua";
-          config = ''
-            require("nvim-treesitter.configs").setup({
-              highlight = { enable = true },
-              indent = { enable = true },
-            })
-          '';
-        }
-
-        # LSP
-        {
-          plugin = nvim-lspconfig;
-          type = "lua";
-          config = ''
-            local lsp = require("lspconfig")
-            lsp.lua_ls.setup{}
-            lsp.nil_ls.setup{}
-            lsp.tsserver.setup{}
-          '';
-        }
-
-        # Autocompletion
-        nvim-cmp
-        cmp-nvim-lsp
-        luasnip
-
-        # Status line
-        {
-          plugin = lualine-nvim;
-          type = "lua";
-          config = ''
-            require("lualine").setup()
-          '';
-        }
-      ];
-
-      extraConfig = ''
-        set number
-        set relativenumber
-        set tabstop=2
-        set shiftwidth=2
-        set expandtab
-        set scrolloff=8
-        set termguicolors
-        '';
-
-
-    };
+  imports = [./neovim.nix];
 
   programs.git = {
     enable = true;
