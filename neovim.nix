@@ -42,11 +42,16 @@
         plugin = nvim-lspconfig;
         type = "lua";
         config = ''
-          require('lspconfig').lua_ls.setup({})
-          require('lspconfig').html.setup({})
-          require('lspconfig').cssls.setup({})
-          require('lspconfig').ts_ls.setup({})
-          require('lspconfig').nil_ls.setup({})
+          vim.lsp.config('lua_ls',{})
+          vim.lsp.enable('lua_ls')
+          vim.lsp.config('html',{})
+          vim.lsp.enable('html')
+          vim.lsp.config('cssls',{})
+          vim.lsp.enable('cssls')
+          vim.lsp.config('ts_ls',{})
+          vim.lsp.enable('ts_ls')
+          vim.lsp.config('nil_ls',{})
+          vim.lsp.enable('nil_ls')
         '';
       }
 
