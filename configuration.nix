@@ -107,6 +107,7 @@
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       kdePackages.kate
+      localsend
     #  thunderbird
     ];
       shell = pkgs.zsh;
@@ -166,7 +167,7 @@
       spotify
       neofetch
       logseq
-
+      gcc
   ];
 
 

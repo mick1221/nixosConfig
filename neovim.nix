@@ -9,6 +9,7 @@
 
     # LSP servers and tools neovim needs on PATH
     extraPackages = with pkgs; [
+
       lua-language-server
       ripgrep # needed by telescope
       vscode-langservers-extracted # html, css
